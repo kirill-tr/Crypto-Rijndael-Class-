@@ -21,6 +21,21 @@ namespace Crypto
             return decrypt;
         }
 
+        // Генератор ключа шифрования.
+        public string GetPass()
+        {
+            int[] arr = new int[6]; // Устанавливаем длину пароля в 6 символов.
+            Random rnd = new Random();
+            string Password = "";
+
+            for(int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = rnd.Next(33, 125);
+                Password += (char)arr[i];
+            }
+            return Password;
+        }
+
         // Шифровщик.
         private static string Encrypt(string clearText, string ekey)
         {
@@ -66,21 +81,6 @@ namespace Crypto
                 }
             }
             return cipherText;
-        }
-
-        // Генератор ключа.
-        public string GetPass()
-        {
-            int[] arr = new int[6]; // Устанавливаем длину пароля в 6 символов.
-            Random rnd = new Random();
-            string Password = "";
-
-            for(int i = 0; i < arr.Length; i++)
-            {
-                arr[i] = rnd.Next(33, 125);
-                Password += (char)arr[i];
-            }
-            return Password;
         }
     }
 }
